@@ -1,0 +1,7 @@
+{
+  "name": "app-avisos",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
