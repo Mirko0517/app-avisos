@@ -1,3 +1,39 @@
-<p>
-  crear-avisos works!
-</p>
+<ion-content>
+  <form [formGroup]="avisoForm" (ngSubmit)="crearAviso()">
+    <ion-item>
+      <ion-label position="floating">Título</ion-label>
+      <ion-input type="text" formControlName="titulo" name="titulo"></ion-input>
+    </ion-item>
+    <div *ngIf="avisoForm.controls['titulo'].invalid && avisoForm.controls['titulo'].touched">
+      El título es obligatorio y debe tener al menos 5 caracteres
+    </div>
+
+    <ion-item>
+      <ion-label position="floating">Descripción</ion-label>
+      <ion-input type="text" formControlName="descripcion" name="descripcion"></ion-input>
+    </ion-item>
+    <div *ngIf="avisoForm.controls['descripcion'].invalid && avisoForm.controls['descripcion'].touched">
+      La descripción es obligatoria y debe tener al menos 20 caracteres
+    </div>
+
+    <ion-item>
+      <ion-label position="floating">Fecha</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" formControlName="fecha" name="fecha"></ion-datetime>
+    </ion-item>
+    <div *ngIf="avisoForm.controls['fecha'].invalid && avisoForm.controls['fecha'].touched">
+      La fecha es obligatoria
+    </div>
+
+    <ion-item>
+      <ion-label position="floating">URL de la foto</ion-label>
+      <ion-input type="text" formControlName="foto" name="foto"></ion-input>
+    </ion-item>
+    <div *ngIf="avisoForm.controls['foto'].invalid && avisoForm.controls['foto'].touched">
+      La URL de la foto es obligatoria
+    </div>
+
+    <ion-button type="submit" expand="block" [disabled]="avisoForm.invalid">Crear Aviso</ion-button>
+  </form>
+  <ion-button (click)="tomarFoto()" expand="block">Tomar Foto</ion-button>
+  <img *ngIf="avisoForm.value.foto" [src]="avisoForm.value.foto" alt="" fill/>
+</ion-content>

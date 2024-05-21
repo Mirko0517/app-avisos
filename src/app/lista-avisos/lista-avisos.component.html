@@ -1,3 +1,19 @@
-<p>
-  lista-avisos works!
-</p>
+<ion-content>
+  <ion-button (click)="navegarACrearAviso()">Crear Nuevo Aviso</ion-button>
+  <ion-list>
+    <ng-container *ngFor="let aviso of avisos; let i = index">
+      <ion-item>
+        <ion-label>
+          <h2>{{ aviso.titulo }}</h2>
+          <p>{{ aviso.descripcion }}</p>
+          <p>Fecha: {{ aviso.fecha | formatoFecha }}</p>
+        </ion-label>
+        <img [src]="aviso.foto" alt="Foto del aviso" *ngIf="aviso.foto" class="imagen-aviso">
+        <!-- Botón de borrar -->
+        <ion-button (click)="borrarAviso(aviso.id)">
+          <ion-icon name="trash-outline"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ng-container>
+  </ion-list>
+</ion-content>
